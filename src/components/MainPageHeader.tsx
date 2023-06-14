@@ -5,23 +5,26 @@ type UserProps = {
 
 export default function MainPageHeader({ EnableRegister, EnableLogin }: UserProps) {
     return (
-        <div className="header bg-cyan-600 w-screen h-10 flex justify-around items-center">
-            <h1 className="title font-sans font-bold text-lg">RoadiLog</h1>
-            <div className="container font-sans flex space-x-4 text-base text-slate-50">
+        <div className="header fixed bg-cyan-600 w-screen h-10 flex">
+            <div className="flex mx-auto space-x-96 items-center">
+                <h1 className="title font-sans font-bold text-white text-lg">RoadiLog</h1>
+                <div className="container font-sans flex space-x-4 text-base text-slate-50">
 
-                <h1 
-                    className="register hover:text-slate-400 hover:curser-pointer"
-                    onClick={() => EnableRegister(true)}
-                >
-                    Sign Up
-                </h1>
-                <h2 
-                    className="login hover:text-slate-400 hover:curser-pointer"
-                    onClick={() => EnableLogin(true)}
-                >
-                    Sign In
-                </h2>
+                    <button 
+                        className="register hover:text-slate-400 hover:cursor-pointer"
+                        onClick={() =>EnableRegister(true)}
+                    >
+                        Sign Up
+                    </button>
 
+                    <button 
+                        className="login hover:text-slate-400 hover:cursor-pointer"
+                        onClick={() => EnableLogin(true)}
+                    >
+                        Sign In
+                    </button>
+
+                </div>
             </div>
         </div>
     )

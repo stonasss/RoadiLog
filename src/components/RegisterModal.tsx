@@ -33,10 +33,10 @@ export default function RegisterModal({ RegisterShown, onClose }: RegisterInfo) 
         }
 
     return (
-        <div className="fixed bg-cyan-200/50 overflow-y-auto h-full w-full flex justify-center items-center">
+        <div className="fixed inset-0 bg-cyan-200/75 bg-opacity-25 backdrop-blur-sm overflow-y-auto h-full w-full flex justify-center items-center">
 
             <div className="flex flex-col">
-                <div className="close text-gray text-base flex justify-end" onClick={() => onClose()}>
+                <div className="close text-gray text-base flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
                     x
                 </div>
 
