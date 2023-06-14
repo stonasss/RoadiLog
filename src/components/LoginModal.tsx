@@ -36,16 +36,17 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
     return (
         <div className="fixed inset-0 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
             <div className="flex flex-col bg-gradient-to-r from-cyan-400 to-cyan-600 p-8 rounded-xl">
-                <div className="close text-white text-xl flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
-                    x
+                <div className="close relative bottom-7 left-4 text-white text-xl flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
+                    <p className="absolute text-sky-100">x</p>
                 </div>
 
                 <form onSubmit={userLogin} className="flex flex-col justify-center items-center">
-                    <div className="flex flex-col">
-                        <label htmlFor='email'>Email</label>
+                    <div className="flex flex-col mt-3">
+                        <label className="text-base mb-1" htmlFor='email'>Email</label>
                         <input
                             type="text"
                             id="email"
+                            className="rounded-lg p-2 placeholder:text-xs"
                             placeholder="Email"
                             value={email}
                             onChange={e => setEmail(e.target.value)}
@@ -53,10 +54,11 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
                     </div>
 
                     <div className="flex flex-col my-4">
-                        <label htmlFor='password'>Password</label>
+                        <label className="text-base mb-1" htmlFor='password'>Password</label>
                         <input
                             type="password"
                             id="password"
+                            className="rounded-lg p-2 placeholder:text-xs"
                             placeholder="Password"
                             value={password}
                             onChange={e => setPassword(e.target.value)}
@@ -66,7 +68,7 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
                     <div>
                         <button
                             type="submit"
-                            className="rounded-full bg-cyan-200 w-[110px] h-[30px] text-sm"
+                            className="rounded-full mt-4 font-bold bg-cyan-200 w-[110px] h-[30px] text-sm"
                         >Login</button>
                     </div>
                 </form>

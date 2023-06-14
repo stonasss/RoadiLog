@@ -10,10 +10,10 @@ export default function MainPageHeader({ EnableRegister, EnableLogin, SwitchLogO
     return (
             <div className="header fixed bg-gradient-to-r from-cyan-500 to-blue-500 w-screen h-14 flex">
                 <div className="flex mx-auto space-x-96 items-center">
-                    <h1 className="title font-sans font-bold text-white text-lg">RoadiLog</h1>
+                    <h1 className="title font-sans font-bold text-white text-xl">RoadiLog</h1>
             {!SwitchLogOut ? (
                 <>
-                    <div className="container font-sans flex space-x-4 text-base text-slate-50">
+                    <div className="container font-mono flex space-x-8 text-sm text-slate-50">
 
                         <button 
                             className="register hover:text-slate-400 hover:cursor-pointer"
