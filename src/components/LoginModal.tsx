@@ -1,6 +1,6 @@
 import { useState, useContext } from 'react';
 import UserContext from '../context/UserContext';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 type LoginInfo = {
@@ -12,7 +12,7 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const { setUserData } = useContext(UserContext);
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
 
     if (!LoginShown) return null;
     
@@ -25,6 +25,7 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
                 setEmail('');
                 setPassword('');
                 onClose();
+                navigate('/home');
             })
             .catch((err) => {
                 alert(err.message);
@@ -33,8 +34,8 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
     }
 
     return (
-        <div className="fixed inset-0 bg-cyan-800 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
-            <div className="flex flex-col">
+        <div className="fixed inset-0 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
+            <div className="flex flex-col bg-gradient-to-r from-cyan-400 to-cyan-600 p-8 rounded-xl">
                 <div className="close text-white text-xl flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
                     x
                 </div>
