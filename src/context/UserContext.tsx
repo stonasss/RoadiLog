@@ -5,10 +5,10 @@ const UserContext = createContext<any>({});
 export default UserContext;
 
 export function UserProvider({ children }: any) {
-    const [userInfo, setUserInfo] = useLocalStorage('userInfo', {});
+    const [userData, setUserData] = useLocalStorage('userData', {});
 
     return (
-        <UserContext.Provider value={{ userInfo, setUserInfo }}>
+        <UserContext.Provider value={{ userData, setUserData }}>
             {children}
         </UserContext.Provider>
     )

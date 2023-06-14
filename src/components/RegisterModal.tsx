@@ -16,9 +16,9 @@ export default function RegisterModal({ RegisterShown, onClose }: RegisterInfo) 
 
     function userRegister(e: any) {
         e.preventDefault();
-        const body = { name, email, image, password };
+        let body = { name, email, image, password };
 
-        axios.post(`${process.env.VITE_REACT_APP_API_BASE_URL}/register`, body)
+        axios.post(`http://localhost:4000/register`, body)
             .then(() => {
                 setName('');
                 setEmail('');
@@ -33,16 +33,16 @@ export default function RegisterModal({ RegisterShown, onClose }: RegisterInfo) 
         }
 
     return (
-        <div className="fixed inset-0 bg-cyan-200/75 bg-opacity-25 backdrop-blur-sm overflow-y-auto h-full w-full flex justify-center items-center">
+        <div className="fixed inset-0 bg-cyan-800 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
 
             <div className="flex flex-col">
-                <div className="close text-gray text-base flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
+                <div className="close text-white text-xl flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
                     x
                 </div>
 
-                <form onSubmit={userRegister} className="w-[700px] h-[850px]">
+                <form onSubmit={userRegister} className="flex flex-col justify-center items-center">
 
-                    <div>
+                    <div className="flex flex-col">
                         <label htmlFor='name'>Username</label>
                         <input
                             type="text"
@@ -53,7 +53,7 @@ export default function RegisterModal({ RegisterShown, onClose }: RegisterInfo) 
                             required />
                     </div>
 
-                    <div>
+                    <div className="flex flex-col my-4">
                         <label htmlFor='email'>Email</label>
                         <input
                             type="text"
@@ -64,31 +64,31 @@ export default function RegisterModal({ RegisterShown, onClose }: RegisterInfo) 
                             required />
                     </div>
 
-                    <div>
+                    <div className="flex flex-col">
                         <label htmlFor='image'>Image</label>
                         <input
                             type="text"
                             id="image"
                             placeholder="Url"
                             value={image}
-                            onChange={e => setImage(e.target.value)}
-                            required />
+                            onChange={e => setImage(e.target.value)} />
                     </div>
 
-                    <div>
+                    <div className="flex flex-col my-4">
                         <label htmlFor='password'>Password</label>
                         <input
-                            type="text"
-                            id="email"
-                            placeholder="Email"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            type="password"
+                            id="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                             required />
                     </div>
 
                     <div>
                         <button
                             type="submit"
+                            className="rounded-full bg-cyan-200 w-[110px] h-[30px] text-sm"
                         >Register</button>
                     </div>
 

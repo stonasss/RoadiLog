@@ -11,7 +11,7 @@ type LoginInfo = {
 export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const { setUserInfo } = useContext(UserContext);
+    const { setUserData } = useContext(UserContext);
     //const navigate = useNavigate();
 
     if (!LoginShown) return null;
@@ -21,7 +21,7 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
         const body = { email, password };
         await axios.post(`${process.env.VITE_REACT_APP_API_BASE_URL}/login`, body)
             .then((res) => {
-                setUserInfo(res.data)
+                setUserData(res.data)
                 onClose();
                 setEmail('');
                 setPassword('');
@@ -33,14 +33,14 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
     }
 
     return (
-        <div className="fixed inset-0 bg-cyan-200/75 bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+        <div className="fixed inset-0 bg-cyan-800 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
             <div className="flex flex-col">
-                <div className="close text-gray text-base flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
+                <div className="close text-white text-xl flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
                     x
                 </div>
 
-                <form onSubmit={userLogin} className="w-[700px] h-[850px]">
-                    <div>
+                <form onSubmit={userLogin} className="flex flex-col justify-center items-center">
+                    <div className="flex flex-col">
                         <label htmlFor='email'>Email</label>
                         <input
                             type="text"
@@ -51,12 +51,12 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
                             required />
                     </div>
 
-                    <div>
+                    <div className="flex flex-col my-4">
                         <label htmlFor='password'>Password</label>
                         <input
                             type="text"
                             id="email"
-                            placeholder="Email"
+                            placeholder="Password"
                             value={email}
                             onChange={e => setEmail(e.target.value)}
                             required />
@@ -65,7 +65,8 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
                     <div>
                         <button
                             type="submit"
-                        >Register</button>
+                            className="rounded-full bg-cyan-200 w-[110px] h-[30px] text-sm"
+                        >Login</button>
                     </div>
                 </form>
             </div>
