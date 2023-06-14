@@ -19,12 +19,12 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
     async function userLogin(e: any) {
         e.preventDefault();
         const body = { email, password };
-        await axios.post(`${process.env.VITE_REACT_APP_API_BASE_URL}/login`, body)
+        await axios.post(`http://localhost:4000/login`, body)
             .then((res) => {
                 setUserData(res.data)
-                onClose();
                 setEmail('');
                 setPassword('');
+                onClose();
             })
             .catch((err) => {
                 alert(err.message);
@@ -54,11 +54,11 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
                     <div className="flex flex-col my-4">
                         <label htmlFor='password'>Password</label>
                         <input
-                            type="text"
-                            id="email"
+                            type="password"
+                            id="password"
                             placeholder="Password"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                             required />
                     </div>
 
