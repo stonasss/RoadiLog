@@ -1,3 +1,6 @@
+import { useContext } from "react"
+import UserContext from "../context/UserContext"
+
 type UserProps = {
     EnableRegister: any,
     EnableLogin: any,
@@ -6,6 +9,7 @@ type UserProps = {
 }
 
 export default function MainPageHeader({ EnableRegister, EnableLogin, SwitchLogOut, EnableLogOut }: UserProps) {
+    const { userData } = useContext(UserContext)
 
     return (
             <div className="header fixed bg-gradient-to-r from-cyan-500 to-blue-500 w-screen h-14 flex">
@@ -33,7 +37,9 @@ export default function MainPageHeader({ EnableRegister, EnableLogin, SwitchLogO
                 </>
             ) : (
                 <>
-                    <div className="container font-sans flex space-x-4 text-base text-slate-50">
+                    <div className="container font-mono flex space-x-4 text-sm text-slate-50">
+
+                        <img className="rounded-full ml-8 w-10" src={userData.image.image} />
 
                         <button 
                             className="login hover:text-slate-400 hover:cursor-pointer"
