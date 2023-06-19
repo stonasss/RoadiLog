@@ -1,8 +1,25 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import UserContext from '../../context/UserContext';
 import axios from 'axios';
 
 export default function MerchSection(): any {
+    const { userData } = useContext(UserContext)
+    const [userMerch, setUserMerch] = useState([])
+
+    async function loadFeed(): Promise<any> {
+        await axios.get(`http://localhost:4000/merch/${userData.image.id}`, userData.token)
+            .then((res) => {
+                setUserMerch(res.data.userMerch)
+            })
+            .catch((err) => {
+                alert(err.message);
+            })
+    }
+
+    useEffect(() => {
+        loadFeed()
+    }, [userData])
+
     return (
         <div className="container m-auto pt-20 max-w-xl items-center">
             <div className="header flex flex-row border-b-2 border-slate-700 pb-1 pr-6">
@@ -13,29 +30,16 @@ export default function MerchSection(): any {
             </div>
 
             <div className="container flex flex-wrap ml-8">
-                <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">
-                    <img className="image mb-2 w-60 font-light pl-2 pr-6" src="https://f4.bcbits.com/img/a0617124739_16.jpg"/>
-                    <h2 className="title left-3/4 mr-4 font-extrabold text-sm text-slate-700">The Dying Dog 12" Vinyl</h2>
-                    <p>R$ 50</p>
-                </div>
 
+            {userMerch.map(merch =>
+            <>
                 <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">
-                    <img className="image mb-2 w-60 font-light pl-2 pr-6" src="https://f4.bcbits.com/img/a0650041480_16.jpg"/>
-                    <h2 className="title left-3/4 mr-4 font-extrabold text-sm text-slate-700">The Yellow Blanket 12" Vinyl</h2>
-                    <p>R$ 40</p>
+                    <img className="image mb-2 w-60 font-light pl-2 pr-6" src={merch.image}/>
+                    <h2 className="title left-3/4 mr-4 font-extrabold text-sm text-slate-700">{merch.title}</h2>
+                    <p>R$ {merch.price}</p>
                 </div>
-
-                <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">
-                    <img className="image mb-2 w-60 font-light pl-2 pr-6" src="https://f4.bcbits.com/img/a1263509245_16.jpg"/>
-                    <h2 className="title left-3/4 mr-4 font-extrabold text-sm text-slate-700">Ao Vivo @ Estúdio Jukebox 7" Vinyl</h2>
-                    <p>R$ 30</p>
-                </div>
-
-                <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">
-                    <img className="image mb-2 w-60 font-light pl-2 pr-6" src="https://f4.bcbits.com/img/a3399805468_16.jpg"/>
-                    <h2 className="title left-3/4 mr-4 font-extrabold text-sm text-slate-700">Do Que Somos Capazes 7" Vinyl</h2>
-                    <p>R$ 20</p>
-                </div>
+            </>
+            )}
 
             </div>
         </div>

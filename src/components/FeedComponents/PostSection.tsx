@@ -5,7 +5,6 @@ import axios from 'axios';
 export default function PostSection(): any {
     const { userData } = useContext(UserContext)
     const [userPosts, setUserPosts] = useState([])
-    console.log(userData)
 
     async function loadFeed(): Promise<any> {
         await axios.get(`http://localhost:4000/posts/${userData.image.id}`, userData.token)
@@ -20,8 +19,6 @@ export default function PostSection(): any {
     useEffect(() => {
         loadFeed()
     }, [userData]);
-
-    console.log(userPosts)
 
     return (
         <div className="container m-auto pt-20 max-w-xl items-center">
@@ -51,7 +48,7 @@ export default function PostSection(): any {
                     </div>
                 </>
                 )}
-                
+
             </div>
         </div>
     )
