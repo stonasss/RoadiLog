@@ -12,7 +12,7 @@ export default function MainPageHeader({ EnableRegister, EnableLogin, SwitchLogO
     const { userData } = useContext(UserContext)
 
     return (
-            <div className="header fixed bg-gradient-to-r from-cyan-500 to-blue-500 w-screen h-14 flex">
+            <div className="header z-10 top-0 fixed bg-gradient-to-r from-cyan-700 via-cyan-400 to-cyan-700 w-screen h-14 flex">
                 <div className="flex mx-auto space-x-96 items-center">
                     <h1 className="title font-sans font-bold text-white text-xl">RoadiLog</h1>
             {!SwitchLogOut ? (

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import MainPageHeader from "../components/MainPageHeader";
-import RegisterModal from '../components/RegisterModal';
-import LoginModal from '../components/LoginModal';
+import RegisterModal from '../components/AuthComponents/RegisterModal';
+import LoginModal from '../components/AuthComponents/LoginModal';
 
 export default function Introduction() {
     const [loginModal, setLoginModal] = useState<any>(false);
@@ -9,7 +9,7 @@ export default function Introduction() {
 
     return (
         <>
-            <div className="App w-screen h-screen bg-cyan-300">
+            <div className="App w-full pb-8 bg-cyan-300">
                 <MainPageHeader EnableRegister={setRegisterModal} EnableLogin={setLoginModal} SwitchLogOut={false} EnableLogOut={false} />
             </div>
             <RegisterModal RegisterShown={registerModal} onClose={() => setRegisterModal(false)} />
