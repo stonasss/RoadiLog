@@ -6,9 +6,21 @@ export default UserContext;
 
 export function UserProvider({ children }: any) {
     const [userData, setUserData] = useLocalStorage('userData', {});
+    const [postData, setPostData] = useLocalStorage('postData', {});
+    const [projectData, setProjectData] = useLocalStorage('projectData', {});
+    const [merchData, setMerchData] = useLocalStorage('merchData', {});
 
     return (
-        <UserContext.Provider value={{ userData, setUserData }}>
+        <UserContext.Provider value={{ 
+            userData,
+            setUserData,
+            postData,
+            setPostData,
+            projectData,
+            setProjectData,
+            merchData,
+            setMerchData
+        }}>
             {children}
         </UserContext.Provider>
     )
