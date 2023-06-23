@@ -18,7 +18,7 @@ RoadiLog intends to serve the musician. The platform allows the artist to post a
 ## How to run ▶️
 ```bash
 # Clone this repository
-$ git clone <https://github.com/stonasss/RoadiLog.git>
+$ git clone https://github.com/stonasss/RoadiLog.git
 # Access the project folder cmd/terminal
 $ cd RoadiLog
 # Install the dependencies
