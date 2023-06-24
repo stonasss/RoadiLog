@@ -12,7 +12,7 @@ export default function PostModal({ PostShown, onClose }: PostInfo) {
     const [description, setDescription] = useState<string>('');
     const [link, setLink] = useState<string>('');
 
-    const { userData, setPostData } = useContext(UserContext)
+    const { userData, reset, setReset } = useContext(UserContext)
     const userToken = userData.token.token
 
     if (!PostShown) return null;
@@ -25,11 +25,11 @@ export default function PostModal({ PostShown, onClose }: PostInfo) {
                 Authorization: `Bearer ${userToken}`
             }
         })
-            .then((res) => {
-                setPostData(res.data)
+            .then(() => {
                 setTitle('');
                 setDescription('');
                 setLink('');
+                setReset(!reset)
                 onClose();
             })
             .catch((err) => {

@@ -24,7 +24,7 @@ export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }
                 </div>
             </div>
 
-            <div className="container">
+            <div className="container flex flex-wrap ml-10">
 
             {merchData.length === 0 ? <div className="empty mt-4 p-8 text-base text-opacity-60 text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
                 merchData.map(merch =>

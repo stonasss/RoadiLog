@@ -12,7 +12,7 @@ export default function ProjectModal({ ProjectShown, onClose }: ProjectInfo) {
     const [instruments, setInstruments] = useState<string>('');
     const [description, setDescription] = useState<string>('');
 
-    const { userData, setProjectData } = useContext(UserContext)
+    const { userData, reset, setReset } = useContext(UserContext)
     const userToken = userData.token.token
 
     if (!ProjectShown) return null;
@@ -25,11 +25,11 @@ export default function ProjectModal({ ProjectShown, onClose }: ProjectInfo) {
                 Authorization: `Bearer ${userToken}`
             }
         })
-            .then((res) => {
-                setProjectData(res.data)
+            .then(() => {
                 setName('');
                 setInstruments('');
                 setDescription('');
+                setReset(!reset)
                 onClose();
             })
             .catch((err) => {
