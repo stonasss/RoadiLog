@@ -13,16 +13,23 @@ export function UserProvider({ children }: any) {
 
     const [postId, setPostId] = useLocalStorage('postId', {})
     const [postTitle, setPostTitle] = useState('');
-    const [postDescription, setPostDescription] = useState([]);
-    const [postLink, setPostLink] = useState([]);
+    const [postDescription, setPostDescription] = useState('');
+    const [postLink, setPostLink] = useState('');
+
+    const [projectId, setProjectId] = useLocalStorage('projectId', {})
+    const [projectName, setProjectName] = useState('')
+    const [projectInstruments, setProjectInstruments] = useState('')
+    const [projectDescription, setProjectDescription] = useState('')
 
     const [reset, setReset] = useState(false)
 
     return (
         <UserContext.Provider value={{
+            //for profile pic & token
             userData,
             setUserData,
 
+            //for editing posts
             postId,
             setPostId,
             postTitle,
@@ -32,13 +39,29 @@ export function UserProvider({ children }: any) {
             postLink,
             setPostLink,
 
+            //for editing projects
+            projectId,
+            setProjectId,
+            projectName,
+            setProjectName,
+            projectInstruments,
+            setProjectInstruments,
+            projectDescription,
+            setProjectDescription,
+
+            //post feed
             postData,
             setPostData,
+
+            //project feed
             projectData,
             setProjectData,
+
+            //merch feed
             merchData,
             setMerchData,
 
+            //for reloading the feed
             reset,
             setReset
         }}>

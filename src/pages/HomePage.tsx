@@ -10,6 +10,7 @@ import ProjectModal from '../components/FeedComponents/SubmissionModals/ProjectM
 import MerchModal from '../components/FeedComponents/SubmissionModals/MerchModal';
 import EditPostModal from '../components/FeedComponents/EditModals/EditPostModal';
 import UserContext from '../context/UserContext';
+import EditProjectModal from '../components/FeedComponents/EditModals/EditProjectModal';
 
 export default function HomePage() {
     const { 
@@ -24,23 +25,32 @@ export default function HomePage() {
         setPostTitle, 
         setPostDescription, 
         setPostLink,
+        setProjectId,
+        setProjectName,
+        setProjectInstruments,
+        setProjectDescription,
         reset,
-        setReset
     } = useContext(UserContext)
     const userToken = userData.token.token
 
     const [logoutModal, setLogoutModal] = useState<any>(false)
     const [postModal, setPostModal] = useState<any>(false)
     const [editPostModal, setEditPostModal] = useState<any>(false)
+    const [editProjectModal, setEditProjectModal] = useState<any>(false)
     const [projectModal, setProjectModal] = useState<any>(false)
     const [merchModal, setMerchModal] = useState<any>(false)
 
     function emptyInfo() {
         setEditPostModal(false)
+        setEditProjectModal(false)
         setPostId('')
+        setProjectId('')
         setPostTitle('')
+        setProjectName('')
         setPostDescription('')
+        setProjectInstruments('')
         setPostLink('')
+        setProjectDescription('')
     }
 
     useEffect(() => {
@@ -105,9 +115,14 @@ export default function HomePage() {
 
                 <ProjectSection 
                     EnableProject={setProjectModal} 
+                    EnableEditProject={setEditProjectModal}
                     projectData={projectData}
                 />
                     <ProjectModal ProjectShown={projectModal} onClose={() => setProjectModal(false)} />
+                    <EditProjectModal 
+                        EditProjectShown={editProjectModal}
+                        onClose={() => emptyInfo()}
+                    />
 
                 <MerchSection 
                     EnableMerch={setMerchModal} 

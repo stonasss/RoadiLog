@@ -91,7 +91,7 @@ export default function EditPostModal({ EditPostShown, onClose }: PostInfo) {
                         <button
                             type="submit"
                             className="rounded-full mt-4 font-bold bg-cyan-200 w-[110px] h-[30px] text-sm"
-                        >Send Post</button>
+                        >Update Post</button>
                     </div>
                 </form>
             </div>
