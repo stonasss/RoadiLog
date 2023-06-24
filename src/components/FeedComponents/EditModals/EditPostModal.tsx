@@ -1,7 +1,6 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import UserContext from '../../../context/UserContext';
 import axios from 'axios';
-import { loadPosts } from '../../../hooks/loadPosts';
 
 type PostInfo = {
     EditPostShown: any,
@@ -9,29 +8,33 @@ type PostInfo = {
 }
 
 export default function EditPostModal({ EditPostShown, onClose }: PostInfo) {
-    const { userData, setPostData, postId, postTitle, postDescription, postLink } = useContext(UserContext)
-    const userToken = userData.token.token
+    const { 
+        userData, 
+        postId, 
+        postTitle,
+        setPostTitle,
+        postDescription, 
+        setPostDescription,
+        postLink,
+        setPostLink,
+        reset,
+        setReset
+    } = useContext(UserContext)
 
-    const [title, setTitle] = useState<string>(postTitle);
-    const [description, setDescription] = useState<string>(postDescription);
-    const [link, setLink] = useState<string>(postLink);
+    const userToken = userData.token.token
 
     if (!EditPostShown) return null;
 
     async function editPost(e: any) {
         e.preventDefault();
-        const body = { title, description, link };
+        const body = { title: postTitle, description: postDescription, link: postLink };
         await axios.put(`http://localhost:4000/posts/${postId}`, body, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }
         })
-            .then((res) => {
-                setPostData(res.data)
-                setTitle('');
-                setDescription('');
-                setLink('');
-                loadPosts();
+            .then(() => {
+                setReset(!reset)
                 onClose();
             })
             .catch((err) => {
@@ -55,8 +58,8 @@ export default function EditPostModal({ EditPostShown, onClose }: PostInfo) {
                             id="title"
                             className="rounded-lg p-2 placeholder:text-xs"
                             placeholder=""
-                            value={title}
-                            onChange={e => setTitle(e.target.value)}
+                            value={postTitle}
+                            onChange={e => setPostTitle(e.target.value)}
                         />
                     </div>
 
@@ -67,8 +70,8 @@ export default function EditPostModal({ EditPostShown, onClose }: PostInfo) {
                             id="description"
                             className="rounded-lg p-2 placeholder:text-xs"
                             placeholder=""
-                            value={description}
-                            onChange={e => setDescription(e.target.value)}
+                            value={postDescription}
+                            onChange={e => setPostDescription(e.target.value)}
                             required />
                     </div>
 
@@ -79,8 +82,8 @@ export default function EditPostModal({ EditPostShown, onClose }: PostInfo) {
                             id="link"
                             className="rounded-lg p-2 placeholder:text-xs"
                             placeholder=""
-                            value={link}
-                            onChange={e => setLink(e.target.value)}
+                            value={postLink}
+                            onChange={e => setPostLink(e.target.value)}
                         />
                     </div>
 

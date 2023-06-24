@@ -2,9 +2,6 @@ import { useState, useContext } from 'react';
 import UserContext from '../../context/UserContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { loadPosts } from '../../hooks/loadPosts';
-import { loadProjects } from '../../hooks/loadProjects';
-import { loadMerch } from '../../hooks/loadMerch';
 
 type LoginInfo = {
     LoginShown: any,
@@ -27,9 +24,6 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
                 setUserData(res.data)
                 setEmail('');
                 setPassword('');
-                loadPosts();
-                loadProjects();
-                loadMerch();
                 onClose();
                 navigate('/home');
             })

@@ -1,14 +1,7 @@
-import { useContext, useEffect } from 'react';
-import UserContext from '../../context/UserContext';
-import { loadProjects } from '../../hooks/loadProjects';
 
-export default function ProjectSection({ EnableProject }: any) {
-    const { projectData } = useContext(UserContext)
 
-    useEffect(() => {
-        loadProjects()
-    }, [projectData])
-    console.log(projectData)
+export default function ProjectSection({ EnableProject, projectData }: any) {
+
 
     return (
         <div className="container m-auto pt-20 max-w-xl items-center">

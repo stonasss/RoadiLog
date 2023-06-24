@@ -1,15 +1,7 @@
-import { useState, useContext, useEffect } from 'react';
-import UserContext from '../../context/UserContext';
-import axios from 'axios';
-import { loadMerch } from '../../hooks/loadMerch';
 
-export default function MerchSection({ EnableMerch }: any) {
-    const { merchData } = useContext(UserContext)
 
-    useEffect(() => {
-        loadMerch();
-    }, [merchData])
-    console.log(merchData)
+export default function MerchSection({ EnableMerch, merchData }: any) {
+
 
     return (
         <div className="container m-auto pt-20 pb-52 max-w-xl items-center">
