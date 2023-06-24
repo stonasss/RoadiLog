@@ -28,30 +28,32 @@ export default function ProjectSection({ EnableProject, EnableEditProject, proje
 
             {projectData.length === 0 ? <div className="empty mt-4 p-8 text-opacity-60 text-base text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
                 projectData.map(project => 
-                <>
-                    <div className='relative'>
-                        <div className="header mt-6 pr-6 mr-4 border-slate-600">
-                            <h1 className="band mb-2 font-light border-l-8 pl-2 border-slate-700">{project.name}</h1>
-                            <h2 className="instruments left-3/4 mr-4 font-light text-slate-700">{project.instruments}</h2>
+
+                    <div key={project.id}>
+                        <div className='relative'>
+                            <div className="header mt-6 pr-6 mr-4 border-slate-600">
+                                <h1 className="band mb-2 font-light border-l-8 pl-2 border-slate-700">{project.name}</h1>
+                                <h2 className="instruments left-3/4 mr-4 font-light text-slate-700">{project.instruments}</h2>
+                            </div>
+
+                            <img
+                                src={Edit}
+                                className='absolute bottom-2 right-0 cursor-pointer w-6'
+                                onClick={() => {
+                                    setProjectId(project.id)
+                                    setProjectName(project.name)
+                                    setProjectDescription(project.description)
+                                    setProjectInstruments(project.instruments)
+                                    EnableEditProject(true)
+                                }}
+                            />
                         </div>
 
-                        <img
-                            src={Edit}
-                            className='absolute bottom-2 right-0 cursor-pointer w-6'
-                            onClick={() => {
-                                setProjectId(project.id)
-                                setProjectName(project.name)
-                                setProjectDescription(project.description)
-                                setProjectInstruments(project.instruments)
-                                EnableEditProject(true)
-                            }}
-                        />
+                        <div>
+                            <p className="description bg-cyan-900 rounded-2xl w-full mt-6 p-4 font-medium text-sm text-cyan-100">{project.description}</p>
+                        </div>
                     </div>
 
-                    <div>
-                        <p className="description bg-cyan-900 rounded-2xl w-full mt-6 p-4 font-medium text-sm text-cyan-100">{project.description}</p>
-                    </div>
-                </>
                 )
             }
             </div>

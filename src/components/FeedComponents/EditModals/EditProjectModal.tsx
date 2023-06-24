@@ -43,6 +43,22 @@ export default function EditProjectModal({ EditProjectShown, onClose }: ProjectI
             })
     }
 
+    async function deleteProject() {
+        await axios.delete(`http://localhost:4000/projects/${projectId}`, {
+            headers: {
+                Authorization: `Bearer ${userToken}`
+            }
+        })
+            .then(() => {
+                setReset(!reset)
+                onClose()
+            })
+            .catch((err) => {
+                alert(err.message);
+                onClose();
+            })
+    }
+
     return (
         <div className="fixed inset-0 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
             <div className="flex flex-col bg-gradient-to-r from-cyan-400 to-cyan-600 p-8 rounded-xl">
@@ -93,6 +109,14 @@ export default function EditProjectModal({ EditProjectShown, onClose }: ProjectI
                             className="rounded-full mt-4 font-bold bg-cyan-200 w-[110px] h-[30px] text-sm"
                         >Update Project</button>
                     </div>
+
+                    <p className="mt-2">or ...</p>
+
+                    <button
+                        className="rounded-full mt-4 font-bold bg-cyan-200 w-[110px] h-[30px] text-sm"
+                        onClick={deleteProject}
+                    >Delete Project?</button>
+                    <p className="mt-1 text-xs text-opacity-70">only click if certain!</p>
                 </form>
             </div>
         </div>

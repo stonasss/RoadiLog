@@ -43,6 +43,22 @@ export default function EditMerchModal({ EditMerchShown, onClose }: MerchInfo) {
             })
     }
 
+    async function deleteMerch() {
+        await axios.delete(`http://localhost:4000/merch/${merchId}`, {
+            headers: {
+                Authorization: `Bearer ${userToken}`
+            }
+        })
+            .then(() => {
+                setReset(!reset)
+                onClose()
+            })
+            .catch((err) => {
+                alert(err.message);
+                onClose();
+            })
+    }
+
     return (
         <div className="fixed inset-0 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
             <div className="flex flex-col bg-gradient-to-r from-cyan-400 to-cyan-600 p-8 rounded-xl">
@@ -87,11 +103,19 @@ export default function EditMerchModal({ EditMerchShown, onClose }: MerchInfo) {
                             required />
                     </div>
 
-                    <div>
+                    <div className="text-center">
                         <button
                             type="submit"
                             className="rounded-full mt-4 font-bold bg-cyan-200 w-[110px] h-[30px] text-sm"
                         >Update Merch</button>
+
+                        <p className="mt-2">or ...</p>
+
+                        <button
+                            className="rounded-full mt-4 font-bold bg-cyan-200 w-[110px] h-[30px] text-sm"
+                            onClick={deleteMerch}
+                        >Delete Merch?</button>
+                        <p className="mt-1 text-xs text-opacity-70">only click if certain!</p>
                     </div>
                 </form>
             </div>

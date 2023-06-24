@@ -28,24 +28,26 @@ export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }
 
             {merchData.length === 0 ? <div className="empty mt-4 p-8 text-base text-opacity-60 text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
                 merchData.map(merch =>
-                <>
-                    <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">
-                        <div className="edit">
-                            <img 
-                                className="image mb-2 w-60 font-light pl-2 pr-6 hover:opacity-60 hover:cursor-pointer hover:" 
-                                src={merch.image}
-                                onClick={() => {
-                                    setMerchId(merch.id)
-                                    setMerchImage(merch.image)
-                                    setMerchTitle(merch.title)
-                                    setMerchPrice(merch.price)
-                                    EnableEditMerch(true)
-                                }}/>
+
+                    <div key={merch.id}>
+                        <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">
+                            <div className="edit">
+                                <img 
+                                    className="image mb-2 w-60 font-light pl-2 pr-6 hover:opacity-60 hover:cursor-pointer hover:" 
+                                    src={merch.image}
+                                    onClick={() => {
+                                        setMerchId(merch.id)
+                                        setMerchImage(merch.image)
+                                        setMerchTitle(merch.title)
+                                        setMerchPrice(merch.price)
+                                        EnableEditMerch(true)
+                                    }}/>
+                            </div>
+                            <h2 className="title left-3/4 mr-4 font-extrabold text-sm text-slate-700">{merch.title}</h2>
+                            <p>R$ {merch.price}</p>
                         </div>
-                        <h2 className="title left-3/4 mr-4 font-extrabold text-sm text-slate-700">{merch.title}</h2>
-                        <p>R$ {merch.price}</p>
                     </div>
-                </>
+
                 )
             }
 
