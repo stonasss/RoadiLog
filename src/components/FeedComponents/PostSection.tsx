@@ -1,21 +1,14 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import UserContext from '../../context/UserContext';
 import Edit from '../../assets/pencil-outline-edit.svg';
-import { loadPosts } from '../../hooks/loadPosts';
 
-export default function PostSection({ EnablePost }: any) {
-    const {  
-        postData,
+export default function PostSection({ EnablePost, EnableEditPost, postData }: any) {
+    const {
         setPostId, 
         setPostTitle, 
         setPostDescription, 
         setPostLink 
     } = useContext(UserContext)
-
-    useEffect(() => {
-        loadPosts()
-    }, [postData])
-    console.log(postData)
 
     return (
         <div className="container m-auto pt-20 pb-1 max-w-xl items-center">
@@ -43,12 +36,13 @@ export default function PostSection({ EnablePost }: any) {
 
                             <img 
                                 src={Edit} 
-                                className='absolute bottom-0 right-2 w-6'
+                                className='absolute cursor-pointer bottom-0 right-2 w-6'
                                 onClick={() => {
                                     setPostId(post.id)
                                     setPostTitle(post.title)
                                     setPostDescription(post.description)
                                     setPostLink(post.link)
+                                    EnableEditPost(true)
                                 }}
                             />
                         </div>

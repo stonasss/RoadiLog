@@ -1,15 +1,14 @@
-import { useState, useContext, useEffect } from 'react';
-import UserContext from '../../context/UserContext';
-import axios from 'axios';
-import { loadMerch } from '../../hooks/loadMerch';
+import { useContext } from "react"
+import UserContext from "../../context/UserContext"
+import Edit from '../../assets/pencil-outline-edit.svg';
 
-export default function MerchSection({ EnableMerch }: any) {
-    const { merchData } = useContext(UserContext)
-
-    useEffect(() => {
-        loadMerch();
-    }, [merchData])
-    console.log(merchData)
+export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }: any) {
+    const {
+        setMerchId,
+        setMerchImage,
+        setMerchTitle,
+        setMerchPrice
+    } = useContext(UserContext)
 
     return (
         <div className="container m-auto pt-20 pb-52 max-w-xl items-center">
@@ -31,7 +30,18 @@ export default function MerchSection({ EnableMerch }: any) {
                 merchData.map(merch =>
                 <>
                     <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">
-                        <img className="image mb-2 w-60 font-light pl-2 pr-6" src={merch.image}/>
+                        <div className="edit">
+                            <img 
+                                className="image mb-2 w-60 font-light pl-2 pr-6 hover:opacity-60 hover:cursor-pointer hover:" 
+                                src={merch.image}
+                                onClick={() => {
+                                    setMerchId(merch.id)
+                                    setMerchImage(merch.image)
+                                    setMerchTitle(merch.title)
+                                    setMerchPrice(merch.price)
+                                    EnableEditMerch(true)
+                                }}/>
+                        </div>
                         <h2 className="title left-3/4 mr-4 font-extrabold text-sm text-slate-700">{merch.title}</h2>
                         <p>R$ {merch.price}</p>
                     </div>

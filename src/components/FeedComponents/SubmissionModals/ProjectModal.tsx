@@ -79,7 +79,7 @@ export default function ProjectModal({ ProjectShown, onClose }: ProjectInfo) {
                             placeholder=""
                             value={description}
                             onChange={e => setDescription(e.target.value)}
-                        />
+                            required />
                     </div>
 
                     <div>
