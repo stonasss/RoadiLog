@@ -21,6 +21,11 @@ export function UserProvider({ children }: any) {
     const [projectInstruments, setProjectInstruments] = useState('')
     const [projectDescription, setProjectDescription] = useState('')
 
+    const [merchId, setMerchId] = useLocalStorage('merchId', {})
+    const [merchImage, setMerchImage] = useState('')
+    const [merchTitle, setMerchTitle] = useState('')
+    const [merchPrice, setMerchPrice] = useState('')
+
     const [reset, setReset] = useState(false)
 
     return (
@@ -48,6 +53,16 @@ export function UserProvider({ children }: any) {
             setProjectInstruments,
             projectDescription,
             setProjectDescription,
+
+            //for editing merch
+            merchId,
+            setMerchId,
+            merchImage,
+            setMerchImage,
+            merchTitle,
+            setMerchTitle,
+            merchPrice,
+            setMerchPrice,
 
             //post feed
             postData,

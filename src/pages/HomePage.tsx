@@ -11,47 +11,72 @@ import MerchModal from '../components/FeedComponents/SubmissionModals/MerchModal
 import EditPostModal from '../components/FeedComponents/EditModals/EditPostModal';
 import UserContext from '../context/UserContext';
 import EditProjectModal from '../components/FeedComponents/EditModals/EditProjectModal';
+import EditMerchModal from '../components/FeedComponents/EditModals/EditMerchModal';
 
 export default function HomePage() {
     const { 
         userData,
+
         postData,
         projectData,
         merchData,
         setPostData,
         setProjectData,
         setMerchData,
+
         setPostId, 
         setPostTitle, 
         setPostDescription, 
         setPostLink,
+
         setProjectId,
         setProjectName,
         setProjectInstruments,
         setProjectDescription,
+
+        setMerchId,
+        setMerchImage,
+        setMerchTitle,
+        setMerchPrice,
+
         reset,
     } = useContext(UserContext)
+
     const userToken = userData.token.token
 
     const [logoutModal, setLogoutModal] = useState<any>(false)
+
     const [postModal, setPostModal] = useState<any>(false)
-    const [editPostModal, setEditPostModal] = useState<any>(false)
-    const [editProjectModal, setEditProjectModal] = useState<any>(false)
     const [projectModal, setProjectModal] = useState<any>(false)
     const [merchModal, setMerchModal] = useState<any>(false)
+
+    const [editPostModal, setEditPostModal] = useState<any>(false)
+    const [editProjectModal, setEditProjectModal] = useState<any>(false)
+    const [editMerchModal, setEditMerchModal] = useState<any>(false)
+
 
     function emptyInfo() {
         setEditPostModal(false)
         setEditProjectModal(false)
+        setEditMerchModal(false)
+
         setPostId('')
         setProjectId('')
+        setMerchId('')
+
         setPostTitle('')
         setProjectName('')
+        setMerchImage('')
+
         setPostDescription('')
         setProjectInstruments('')
+        setMerchTitle('')
+
         setPostLink('')
         setProjectDescription('')
+        setMerchPrice('')
     }
+
 
     useEffect(() => {
         async function getPostData() { 
@@ -62,7 +87,8 @@ export default function HomePage() {
                     },
                 })
                 .then((res) => {
-                    setPostData(res.data.userPosts)
+                    const posts = res.data.userPosts.reverse()
+                    setPostData(posts)
                 })
         }
 
@@ -74,7 +100,8 @@ export default function HomePage() {
                     },
             })
                 .then((res) => {
-                    setProjectData(res.data.userProjects);
+                    const projects = res.data.userProjects.reverse()
+                    setProjectData(projects);
             })
         }
 
@@ -86,7 +113,8 @@ export default function HomePage() {
                     },
             })
                 .then((res) => {
-                    setMerchData(res.data.userMerch);
+                    const merch = res.data.userMerch.reverse()
+                    setMerchData(merch);
             })
         }
         getPostData()
@@ -105,13 +133,12 @@ export default function HomePage() {
                 <PostSection 
                     EnablePost={setPostModal} 
                     EnableEditPost={setEditPostModal} 
-                    postData={postData}
-                />
+                    postData={postData} />
+
                     <PostModal PostShown={postModal} onClose={() => setPostModal(false)} />
                     <EditPostModal 
                         EditPostShown={editPostModal} 
-                        onClose={() => emptyInfo()} 
-                    />
+                        onClose={() => emptyInfo()} />
 
                 <ProjectSection 
                     EnableProject={setProjectModal} 
@@ -121,14 +148,17 @@ export default function HomePage() {
                     <ProjectModal ProjectShown={projectModal} onClose={() => setProjectModal(false)} />
                     <EditProjectModal 
                         EditProjectShown={editProjectModal}
-                        onClose={() => emptyInfo()}
-                    />
+                        onClose={() => emptyInfo()} />
 
                 <MerchSection 
-                    EnableMerch={setMerchModal} 
+                    EnableMerch={setMerchModal}
+                    EnableEditMerch={setEditMerchModal}
                     merchData={merchData}
                 />
                     <MerchModal MerchShown={merchModal} onClose={() => setMerchModal(false)} />
+                    <EditMerchModal 
+                        EditMerchShown={editMerchModal}
+                        onClose={() => emptyInfo()} />
             </div>
         </>
     )

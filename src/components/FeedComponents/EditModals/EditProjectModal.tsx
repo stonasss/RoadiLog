@@ -60,7 +60,7 @@ export default function EditProjectModal({ EditProjectShown, onClose }: ProjectI
                             placeholder=""
                             value={projectName}
                             onChange={e => setProjectName(e.target.value)}
-                        />
+                            required />
                     </div>
 
                     <div className="flex flex-col my-4">
@@ -84,7 +84,7 @@ export default function EditProjectModal({ EditProjectShown, onClose }: ProjectI
                             placeholder=""
                             value={projectDescription}
                             onChange={e => setProjectDescription(e.target.value)}
-                        />
+                            required />
                     </div>
 
                     <div>
