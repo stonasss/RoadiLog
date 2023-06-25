@@ -7,9 +7,9 @@ export default UserContext;
 export function UserProvider({ children }: any) {
     const [userData, setUserData] = useLocalStorage('userData', {});
 
-    const [postData, setPostData] = useState([]);
-    const [projectData, setProjectData] = useState([]);
-    const [merchData, setMerchData] = useState([]);
+    const [postData, setPostData] = useState<any[]>([]);
+    const [projectData, setProjectData] = useState<any[]>([]);
+    const [merchData, setMerchData] = useState<any[]>([]);
 
     const [postId, setPostId] = useLocalStorage('postId', {})
     const [postTitle, setPostTitle] = useState('');

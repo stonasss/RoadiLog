@@ -1,6 +1,5 @@
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import UserContext from "../../context/UserContext"
-import Edit from '../../assets/pencil-outline-edit.svg';
 
 export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }: any) {
     const {
@@ -9,6 +8,9 @@ export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }
         setMerchTitle,
         setMerchPrice
     } = useContext(UserContext)
+
+    const [userMerch, setUserMerch] = useState<any[]>([]);
+    setUserMerch(merchData)
 
     return (
         <div className="container m-auto pt-20 pb-52 max-w-xl items-center">
@@ -26,8 +28,8 @@ export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }
 
             <div className="container flex flex-wrap ml-10">
 
-            {merchData.length === 0 ? <div className="empty mt-4 p-8 text-base text-opacity-60 text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
-                merchData.map(merch =>
+            {userMerch.length === 0 ? <div className="empty mt-4 p-8 text-base text-opacity-60 text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
+                userMerch.map(merch =>
 
                     <div key={merch.id}>
                         <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">

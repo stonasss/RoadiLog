@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres
+    container_name: postgres
+    restart: always
+    ports:
+      - 5433:5432
+    env_file:
+      - .env
+    volumes:
+      - postgres-volume:/var/lib/postgresql/data
+
+  node:
+    container_name: node
+    build: ./
+    ports:
+      - 5000:5000
+    depends_on:
+      - postgres
+    env_file:
+      - .env
+
+  react:
+    container_name: react
+    build: ./
+    volumes:
+      - react-volume:/var/www/html
+
+volumes:
+  postgres-volume:
+  react-volume:
