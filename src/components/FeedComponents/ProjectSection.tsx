@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import UserContext from '../../context/UserContext';
 import Edit from '../../assets/pencil-outline-edit.svg';
 
@@ -9,12 +9,6 @@ export default function ProjectSection({ EnableProject, EnableEditProject, proje
         setProjectInstruments,
         setProjectDescription
     } = useContext(UserContext)
-
-    const [userProjects, setUserProjects] = useState<any[]>([]);
-
-    useEffect(() => {
-        setUserProjects(projectData)
-    }, [])
 
     return (
         <div className="container m-auto pt-20 max-w-xl items-center">
@@ -32,8 +26,8 @@ export default function ProjectSection({ EnableProject, EnableEditProject, proje
 
             <div className="container flex flex-col mb-12">
 
-            {userProjects.length === 0 ? <div className="empty mt-4 p-8 text-opacity-60 text-base text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
-                userProjects.map(project => 
+            {projectData.length === 0 ? <div className="empty mt-4 p-8 text-opacity-60 text-base text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
+                projectData.map((project: any) => 
 
                     <div key={project.id}>
                         <div className='relative'>

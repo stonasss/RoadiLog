@@ -8,13 +8,24 @@ type LogoutInfo = {
 }
 
 export default function LogoutModal({ LogoutShown, onClose }: LogoutInfo) {
-    const { setUserData } = useContext(UserContext);
+    const { 
+        setUserData,
+        setPostData,
+        setProjectData,
+        setMerchData,
+        setReset,
+        reset
+    } = useContext(UserContext);
     const navigate = useNavigate();
 
     if (!LogoutShown) return null;
 
     async function logout() {
-        setUserData(null);
+        setUserData([]);
+        setPostData([]);
+        setProjectData([]);
+        setMerchData([]);
+        setReset(!reset)
         navigate('/');
         onClose();
     }

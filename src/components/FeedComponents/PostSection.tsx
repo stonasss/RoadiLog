@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from 'react';
+import { useContext } from 'react';
 import UserContext from '../../context/UserContext';
 import Edit from '../../assets/pencil-outline-edit.svg';
 
@@ -7,14 +7,8 @@ export default function PostSection({ EnablePost, EnableEditPost, postData }: an
         setPostId, 
         setPostTitle, 
         setPostDescription, 
-        setPostLink 
+        setPostLink,
     } = useContext(UserContext)
-
-    const [userPosts, setUserPosts] = useState<any[]>([]);
-
-    useEffect(() => {
-        setUserPosts(postData)
-    }, [])
 
     return (
         <div className="container m-auto pt-20 pb-1 max-w-xl items-center">
@@ -31,8 +25,8 @@ export default function PostSection({ EnablePost, EnableEditPost, postData }: an
             </div>
 
             <div className="container">
-                {userPosts.length === 0 ? <div className="empty mt-4 p-8 text-opacity-60 text-base text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
-                    userPosts.map(post => 
+                {postData.length === 0 ? <div className="empty mt-4 p-8 text-opacity-60 text-base text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
+                    postData.map((post: any) => 
 
                         <div key={post.id}>
                             <div className='top relative'>

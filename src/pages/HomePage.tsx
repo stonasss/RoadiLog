@@ -121,8 +121,7 @@ export default function HomePage() {
         getProjectData()
         getMerchData()
 
-    }, [reset, postData, projectData, merchData])
-
+    }, [reset])
 
     return (
         <>

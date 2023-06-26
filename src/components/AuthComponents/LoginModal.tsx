@@ -11,7 +11,7 @@ type LoginInfo = {
 export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
-    const { setUserData } = useContext(UserContext);
+    const { setUserData, setReset, reset } = useContext(UserContext);
     const navigate = useNavigate();
 
     if (!LoginShown) return null;
@@ -22,6 +22,7 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
         await axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/login`, body)
             .then((res) => {
                 setUserData(res.data)
+                setReset(!reset)
                 setEmail('');
                 setPassword('');
                 onClose();
@@ -34,7 +35,7 @@ export default function LoginModal({ LoginShown, onClose }: LoginInfo) {
     }
 
     return (
-        <div className="fixed inset-0 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
+        <div className="fixed inset-0 z-50 bg-opacity-20 backdrop-blur-sm flex justify-center items-center">
             <div className="flex flex-col bg-gradient-to-r from-cyan-400 to-cyan-600 p-8 rounded-xl">
                 <div className="close relative bottom-7 left-4 text-white text-xl flex justify-end hover:cursor-pointer" onClick={() => onClose()}>
                     <p className="absolute text-sky-100">x</p>

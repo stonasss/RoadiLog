@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react"
+import { useContext } from "react"
 import UserContext from "../../context/UserContext"
 
 export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }: any) {
@@ -8,13 +8,6 @@ export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }
         setMerchTitle,
         setMerchPrice
     } = useContext(UserContext)
-
-    const [userMerch, setUserMerch] = useState<any[]>([]);
-
-    useEffect(() => {
-        setUserMerch(merchData)
-    }, [])
-
 
     return (
         <div className="container m-auto pt-20 pb-52 max-w-xl items-center">
@@ -32,8 +25,8 @@ export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }
 
             <div className="container flex flex-wrap ml-10">
 
-            {userMerch.length === 0 ? <div className="empty mt-4 p-8 text-base text-opacity-60 text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
-                userMerch.map(merch =>
+            {merchData.length === 0 ? <div className="empty mt-4 p-8 text-base text-opacity-60 text-center text-stone-600 font-serif font-thin">Nothing here yet, show us what you got!</div> : 
+                merchData.map((merch: any) =>
 
                     <div key={merch.id}>
                         <div className="product flex flex-col mt-6 pr-6 mr-4 justify-center items-center">
