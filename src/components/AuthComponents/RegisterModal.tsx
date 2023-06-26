@@ -18,7 +18,7 @@ export default function RegisterModal({ RegisterShown, onClose }: RegisterInfo) 
         e.preventDefault();
         let body = { name, email, image, password };
 
-        axios.post(`http://localhost:4000/register`, body)
+        axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/register`, body)
             .then(() => {
                 setName('');
                 setEmail('');

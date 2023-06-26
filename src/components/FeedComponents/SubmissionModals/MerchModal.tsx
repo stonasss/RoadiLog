@@ -21,7 +21,7 @@ export default function MerchModal({ MerchShown, onClose }: MerchInfo) {
         e.preventDefault();
         const body = { image, title, price };
         await axios
-            .post(`http://localhost:4000/merch/new`, body, {
+            .post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/merch/new`, body, {
                 headers: {
                     Authorization: `Bearer ${userToken}`,
                 },

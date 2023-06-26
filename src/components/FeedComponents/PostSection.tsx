@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import UserContext from '../../context/UserContext';
 import Edit from '../../assets/pencil-outline-edit.svg';
 
@@ -11,7 +11,10 @@ export default function PostSection({ EnablePost, EnableEditPost, postData }: an
     } = useContext(UserContext)
 
     const [userPosts, setUserPosts] = useState<any[]>([]);
-    setUserPosts(postData)
+
+    useEffect(() => {
+        setUserPosts(postData)
+    }, [])
 
     return (
         <div className="container m-auto pt-20 pb-1 max-w-xl items-center">

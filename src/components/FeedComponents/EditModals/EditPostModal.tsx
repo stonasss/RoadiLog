@@ -28,7 +28,7 @@ export default function EditPostModal({ EditPostShown, onClose }: PostInfo) {
     async function editPost(e: any) {
         e.preventDefault();
         const body = { title: postTitle, description: postDescription, link: postLink };
-        await axios.put(`http://localhost:4000/posts/${postId}`, body, {
+        await axios.put(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/posts/${postId}`, body, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }
@@ -44,7 +44,7 @@ export default function EditPostModal({ EditPostShown, onClose }: PostInfo) {
     }
 
     async function deletePost() {
-        await axios.delete(`http://localhost:4000/posts/${postId}`, {
+        await axios.delete(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/${postId}`, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }

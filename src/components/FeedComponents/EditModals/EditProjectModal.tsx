@@ -28,7 +28,7 @@ export default function EditProjectModal({ EditProjectShown, onClose }: ProjectI
     async function editProject(e: any) {
         e.preventDefault();
         const body = { name: projectName, instruments: projectInstruments, description: projectDescription };
-        await axios.put(`http://localhost:4000/projects/${projectId}`, body, {
+        await axios.put(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/projects/${projectId}`, body, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }
@@ -44,7 +44,7 @@ export default function EditProjectModal({ EditProjectShown, onClose }: ProjectI
     }
 
     async function deleteProject() {
-        await axios.delete(`http://localhost:4000/projects/${projectId}`, {
+        await axios.delete(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/${projectId}`, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }

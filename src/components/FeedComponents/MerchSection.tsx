@@ -1,4 +1,4 @@
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import UserContext from "../../context/UserContext"
 
 export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }: any) {
@@ -10,7 +10,11 @@ export default function MerchSection({ EnableMerch, EnableEditMerch, merchData }
     } = useContext(UserContext)
 
     const [userMerch, setUserMerch] = useState<any[]>([]);
-    setUserMerch(merchData)
+
+    useEffect(() => {
+        setUserMerch(merchData)
+    }, [])
+
 
     return (
         <div className="container m-auto pt-20 pb-52 max-w-xl items-center">

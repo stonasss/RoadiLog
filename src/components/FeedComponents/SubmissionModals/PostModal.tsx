@@ -20,7 +20,7 @@ export default function PostModal({ PostShown, onClose }: PostInfo) {
     async function submitPost(e: any) {
         e.preventDefault();
         const body = { title, description, link };
-        await axios.post(`http://localhost:4000/posts/new`, body, {
+        await axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/posts/new`, body, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }

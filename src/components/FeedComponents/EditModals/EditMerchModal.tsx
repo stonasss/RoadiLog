@@ -28,7 +28,7 @@ export default function EditMerchModal({ EditMerchShown, onClose }: MerchInfo) {
     async function editMerch(e: any) {
         e.preventDefault();
         const body = { image: merchImage, title: merchTitle, price: merchPrice };
-        await axios.put(`http://localhost:4000/merch/${merchId}`, body, {
+        await axios.put(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/merch/${merchId}`, body, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }
@@ -44,7 +44,7 @@ export default function EditMerchModal({ EditMerchShown, onClose }: MerchInfo) {
     }
 
     async function deleteMerch() {
-        await axios.delete(`http://localhost:4000/merch/${merchId}`, {
+        await axios.delete(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/merch/${merchId}`, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }

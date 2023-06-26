@@ -81,7 +81,7 @@ export default function HomePage() {
     useEffect(() => {
         async function getPostData() { 
             await axios
-                .get(`http://localhost:4000/posts/${userData.image.id}`, {
+                .get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/posts/${userData.image.id}`, {
                     headers: {
                         Authorization: `Bearer ${userToken}`,
                     },
@@ -94,7 +94,7 @@ export default function HomePage() {
 
         async function getProjectData() {
             await axios
-                .get(`http://localhost:4000/projects/${userData.image.id}`, {
+                .get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/projects/${userData.image.id}`, {
                     headers: {
                         Authorization: `Bearer ${userToken}`,
                     },
@@ -107,7 +107,7 @@ export default function HomePage() {
 
         async function getMerchData() {
             await axios
-                .get(`http://localhost:4000/merch/${userData.image.id}`, {
+                .get(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/merch/${userData.image.id}`, {
                     headers: {
                         Authorization: `Bearer ${userToken}`,
                     },
@@ -121,7 +121,7 @@ export default function HomePage() {
         getProjectData()
         getMerchData()
 
-    }, [reset])
+    }, [reset, postData, projectData, merchData])
 
 
     return (

@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import UserContext from '../../context/UserContext';
 import Edit from '../../assets/pencil-outline-edit.svg';
 
@@ -11,7 +11,10 @@ export default function ProjectSection({ EnableProject, EnableEditProject, proje
     } = useContext(UserContext)
 
     const [userProjects, setUserProjects] = useState<any[]>([]);
-    setUserProjects(projectData)
+
+    useEffect(() => {
+        setUserProjects(projectData)
+    }, [])
 
     return (
         <div className="container m-auto pt-20 max-w-xl items-center">

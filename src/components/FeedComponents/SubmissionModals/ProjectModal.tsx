@@ -20,7 +20,7 @@ export default function ProjectModal({ ProjectShown, onClose }: ProjectInfo) {
     async function submitProject(e: any) {
         e.preventDefault();
         const body = { name, instruments, description };
-        await axios.post(`http://localhost:4000/projects/new`, body, {
+        await axios.post(`${import.meta.env.VITE_REACT_APP_API_BASE_URL}/projects/new`, body, {
             headers: {
                 Authorization: `Bearer ${userToken}`
             }
